@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand: 168 85 247;
+  --color-calm: 14 165 233;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased text-gray-800 bg-white;
+}
+
+/* Focus ring for accessibility */
+a:focus-visible,
+button:focus-visible {
+  @apply outline-none ring-2 ring-violet-500 ring-offset-2;
+}
+
+/* Skip link */
+.skip-link {
+  @apply absolute left-4 -top-12 z-50 rounded-md bg-violet-600 px-4 py-2 text-white transition focus:top-4;
+}
