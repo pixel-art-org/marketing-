@@ -12,11 +12,11 @@ export function Hero() {
       className="relative overflow-hidden pt-28 pb-20 sm:pt-36 sm:pb-28"
       aria-labelledby="hero-heading"
     >
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-violet-50/80 via-white to-sky-50/60" />
-      <div className="absolute top-20 right-0 h-96 w-96 rounded-full bg-violet-200/30 blur-3xl" />
-      <div className="absolute bottom-20 left-0 h-72 w-72 rounded-full bg-sky-200/30 blur-3xl" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-violet-50/80 via-white to-sky-50/60 pointer-events-none" />
+      <div className="absolute top-20 right-0 h-96 w-96 rounded-full bg-violet-200/30 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-0 h-72 w-72 rounded-full bg-sky-200/30 blur-3xl pointer-events-none" />
 
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative z-0 mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="text-center lg:text-left">
             <motion.h1
@@ -50,7 +50,7 @@ export function Hero() {
                 href={APP_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-2xl bg-gray-900 px-6 py-4 text-base font-semibold text-white shadow-soft transition hover:bg-gray-800 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2"
+                className="relative z-10 inline-flex min-h-[48px] min-w-[280px] cursor-pointer items-center justify-center rounded-2xl bg-gray-900 px-6 py-4 text-base font-semibold text-white shadow-soft transition hover:bg-gray-800 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 active:bg-gray-700"
                 aria-label="Download PixelArt on the App Store"
               >
                 Download on the App Store

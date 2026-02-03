@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 const faqs = [
   {
     q: 'Does PixelArt work offline?',
@@ -41,29 +39,22 @@ export function FAQ() {
       aria-labelledby="faq-heading"
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <motion.h2
+        <h2
           id="faq-heading"
           className="text-center text-3xl font-bold text-gray-900 sm:text-4xl"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
         >
           Frequently asked questions
-        </motion.h2>
+        </h2>
 
         <ul className="mt-12 space-y-4">
-          {faqs.map((faq, i) => (
-            <motion.li
+          {faqs.map((faq) => (
+            <li
               key={faq.q}
               className="rounded-2xl border border-gray-100 bg-gray-50/50 p-5"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-20px' }}
-              transition={{ duration: 0.3, delay: i * 0.04 }}
             >
               <h3 className="font-semibold text-gray-900">{faq.q}</h3>
               <p className="mt-2 text-gray-600">{faq.a}</p>
-            </motion.li>
+            </li>
           ))}
         </ul>
       </div>
