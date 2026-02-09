@@ -52,12 +52,35 @@ Output is in the **`out`** directory (static HTML/CSS/JS). No Node server is req
 2. Set **Root Directory** to `marketing` if the repo is a monorepo.
 3. Deploy. Vercel will use the Next.js build; for static export it will serve the `out` folder.
 
+### Nginx at a subpath (e.g. https://itsartstudios.com/pixelart)
+
+The app is built with **`basePath: '/pixelart'`**, so it must be served under `/pixelart`. On your EC2 server, run the app with `npx serve -s out -l 3000` (from the `marketing` directory), then in Nginx use:
+
+```nginx
+# Redirect /pixelart to /pixelart/
+location = /pixelart {
+    return 302 /pixelart/;
+}
+# Strip /pixelart prefix and proxy to the app (served at root on port 3000)
+location /pixelart/ {
+    rewrite ^/pixelart/?(.*)$ /$1 break;
+    proxy_pass http://127.0.0.1:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
+
+After changing Nginx config: `sudo nginx -t && sudo systemctl reload nginx`.
+
 ### Other static hosts
 
 1. Run `npm run build`.
 2. Upload the contents of the **`out`** folder to your host (Netlify, S3, GitHub Pages, etc.).
-3. Set **Environment variable** `NEXT_PUBLIC_SITE_URL` to your production URL (e.g. `https://yourdomain.com`) so the sitemap and metadata use the correct domain.
-4. Update **`public/robots.txt`**: replace the `Sitemap` line with your full URL, e.g. `Sitemap: https://yourdomain.com/sitemap.xml`.
+3. Set **Environment variable** `NEXT_PUBLIC_SITE_URL` to your production URL (e.g. `https://yourdomain.com/pixelart` if using a subpath) so the sitemap and metadata use the correct domain.
+4. Update **`public/robots.txt`**: replace the `Sitemap` line with your full URL, e.g. `Sitemap: https://yourdomain.com/pixelart/sitemap.xml`.
 
 ## Project structure
 
