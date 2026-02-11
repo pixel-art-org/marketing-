@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Full URL preferred for crawlers; or use /pixelart/sitemap.xml if same origin
-Sitemap: https://itsartstudios.com/pixelart/sitemap.xml
+# Replace with your real site URL before deploy, e.g. https://yourdomain.com/sitemap.xml
+Sitemap: https://itsartstudios.com/sitemap.xml

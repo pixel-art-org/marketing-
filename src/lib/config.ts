@@ -13,7 +13,7 @@ export const TERMS_URL =
 
 export const PRIVACY_URL = '/privacy';
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://itsartstudios.com/pixelart';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://itsartstudios.com';
 
 export const META = {
   title: `${APP_NAME}: Number Coloring Book – Relaxing Pixel Painting`,
