@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { APP_NAME, APP_STORE_URL, PRIVACY_URL } from '@/lib/config';
+import { APP_NAME, APP_STORE_URL, BASE_PATH, PRIVACY_URL } from '@/lib/config';
 
 export function Hero() {
   return (
@@ -74,7 +74,7 @@ export function Hero() {
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-violet-400/20 to-sky-400/20 blur-2xl" />
               <div className="relative rounded-3xl p-3 shadow-soft ring-1 ring-black/5">
                 <Image
-                  src="/icon.png"
+                  src={`${BASE_PATH}/icon.png`}
                   alt={`${APP_NAME} app icon`}
                   width={240}
                   height={240}

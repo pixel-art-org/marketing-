@@ -15,9 +15,12 @@ export const PRIVACY_URL = '/privacy';
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://itsartstudios.com/pixelart';
 
+/** Base path for static assets (must match next.config.js basePath). */
+export const BASE_PATH = '/pixelart';
+
 export const META = {
   title: `${APP_NAME}: Number Coloring Book – Relaxing Pixel Painting`,
   description:
     'Peaceful paint-by-number pixel art. Slow down, unwind, and watch calm scenes take shape one square at a time. Offline-friendly, daily challenge, soothing sounds.',
-  ogImage: '/icon.png',
+  ogImage: `${SITE_URL}/icon.png`,
 };

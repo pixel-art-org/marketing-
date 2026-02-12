@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { APP_NAME, APP_STORE_URL, PRIVACY_URL } from '@/lib/config';
+import { APP_NAME, APP_STORE_URL, BASE_PATH, PRIVACY_URL } from '@/lib/config';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -39,7 +39,7 @@ export function Header() {
         >
           <span className="relative h-9 w-9 overflow-hidden rounded-lg">
             <Image
-              src="/icon.png"
+              src={`${BASE_PATH}/icon.png`}
               alt=""
               width={36}
               height={36}
