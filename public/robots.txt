@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Replace with your real site URL before deploy, e.g. https://yourdomain.com/sitemap.xml
-Sitemap: https://itsartstudios.com/sitemap.xml
+Sitemap: https://itsartstudios.com/pixelart/sitemap.xml
