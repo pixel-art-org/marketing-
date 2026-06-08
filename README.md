@@ -54,33 +54,26 @@ Output is in the **`out`** directory (static HTML/CSS/JS). No Node server is req
 
 ### Nginx (EC2): site only at `/pixelart`
 
-The app is built with **`basePath: '/pixelart'`**. On EC2 run `npx serve -s out -l 3000` from the marketing directory, then in Nginx:
+The app is built with **`basePath: '/pixelart'`**. Static files live in **`out/`** (`index.html`, `privacy/index.html`, `_next/...`).
 
-- **Redirect root to /pixelart** so the site is only reachable at `https://itsartstudios.com/pixelart`:
-- **Proxy /pixelart** to the app (strip prefix so the app receives `/`, `/privacy`, etc.):
+**Do not** strip the `/pixelart` prefix and **do not** use `serve -s` (SPA mode sends every unknown path to `index.html`, so `/pixelart/privacy` shows the home page).
+
+1. Build and copy `out/` to the server (e.g. `/var/www/pixelart-marketing/out/`).
+2. Add the snippet from **`deploy/nginx-pixelart.conf`** inside your `server { }` block (adjust the `alias` path).
+3. Reload nginx: `sudo nginx -t && sudo systemctl reload nginx`.
 
 ```nginx
-# Redirect root so site is only at /pixelart
-location = / {
-    return 302 /pixelart/;
-}
-# Optional: redirect /pixelart (no slash) to /pixelart/
 location = /pixelart {
     return 302 /pixelart/;
 }
-# Serve the app under /pixelart
+
 location /pixelart/ {
-    rewrite ^/pixelart/?(.*)$ /$1 break;
-    proxy_pass http://127.0.0.1:3000;
-    proxy_http_version 1.1;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
+    alias /var/www/pixelart-marketing/out/;
+    try_files $uri $uri.html $uri/index.html =404;
 }
 ```
 
-Then: `sudo nginx -t && sudo systemctl reload nginx`.
+Privacy page URL: **`https://itsartstudios.com/pixelart/privacy/`** (trailing slash).
 
 ### Other static hosts
 

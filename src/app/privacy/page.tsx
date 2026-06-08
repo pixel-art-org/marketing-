@@ -190,11 +190,6 @@ export default function PrivacyPage() {
             </section>
           </div>
 
-          <div className="mt-12 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-            <strong>Disclaimer:</strong> This is a general privacy policy template; update to match your
-            actual practices.
-          </div>
-
           <p className="mt-8">
             <Link
               href="/"
